@@ -1,0 +1,49 @@
+﻿@using Ciber.ViewModels.System.Users
+@model LoginRequest
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="container pt-5">
+        <div class="row justify-content-md-center pt-5">
+            <div class="card col-md-6 col form-login">
+                <div class="card-body ">
+                    <form asp-action="Login" asp-controller="User" method="post">
+                        <div class="form-group">
+                            <label class="small mb-1">User Name</label>
+                            <input class="form-control py-4" asp-for="UserName" type="text" placeholder="Enter user name" />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1">Password</label>
+                            <input class="form-control py-4" asp-for="Password" type="password" placeholder="Enter password" />
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" asp-for="RememberMe" type="checkbox" />
+                                <label class="custom-control-label" for="rememberPassword">Remember</label>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+
+                            <button class="btn btn-outline-primary" type="submit">Login</button>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

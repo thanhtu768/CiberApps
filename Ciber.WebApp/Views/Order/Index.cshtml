@@ -1,0 +1,94 @@
+﻿@using Ciber.ViewModels.Catalog.Orders
+@using Ciber.ViewModels.Common
+@model PagedResult<OrderViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row justify-content-center mt-5">
+    <form class="form-inline">
+        <h5>Enter category to search</h5>
+        <input type="search" name="searchByCategory" class="form-control mr-sm-2 ml-3" placeholder="search...">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+</div>
+<hr />
+<div class="row">
+    <div class="col">
+        <table class="table table-hover border sortable-table">
+            <thead>
+                <tr>
+                    <th>
+                        Product name
+                    </th>
+                    <th>
+                        Category Name
+                    </th>
+                    <th>
+                        Customer name
+                    </th>
+                    <th>
+                        Order Date
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>@item.ProductName</td>
+                        <td>@item.CategoryName</td>
+                        <td>@item.CustomerName</td>
+                        <td>@item.OrderDate.ToString("dd/MM/yyyy")</td>
+                        <td>@item.Amount</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row justify-content-end">
+    <div class="col-md-2">
+        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreateOrder" onclick="CreateOrder()">Create new order</button>
+    </div>
+</div>
+<div class="modal fade" id="modalCreateOrder" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="create_dialog">
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        $('.sortable-table').sortableTable();
+
+        function CreateOrder() {
+            $.ajax({
+                //type: "POST",
+                url: "/Order/Create",
+                success: function (result) {
+                    $('.create_dialog').html(result);
+
+                },
+                failure: function (result) {
+                    alert(result.responseText);
+                },
+                error: function (result) {
+                    alert(result.responseText);
+                }
+            });
+        }
+    </script>
+    
+}
+

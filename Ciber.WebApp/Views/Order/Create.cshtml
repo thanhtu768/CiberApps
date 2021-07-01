@@ -1,0 +1,48 @@
+﻿@using Ciber.ViewModels.Catalog.Orders
+@model OrderCreateRequest
+    <form asp-action="Create" asp-controller="Order">
+        <div class="modal-header">
+            <h5 class="modal-title" id="createOrderTitle">Create new Order</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="Name">Order Name</label>
+                <div class="col-md-8">
+                    <input class="form-control" asp-for="OrderName" id="Name"></input>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="ProductID">Product</label>
+                <div class="col-md-8">
+                    <select class="form-control" asp-for="ProductID" asp-items="@ViewBag.ListSourceProduct" id="ProductID"></select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="CustomerID">Customer</label>
+                <div class="col-md-8">
+                    <select class="form-control" asp-for="CustomerID" asp-items="@ViewBag.ListSourceCustomer" id="CustomerID"></select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="OrderDate">Order Date</label>
+                <div class="col-md-8">
+                    <input type="date" class="form-control" id="OrderDate"></input>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="Amount">Amount</label>
+                <div class="col-md-8">
+                    <input class="form-control" asp-for="Amount" id="Amount"></input>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <div class="col text-center">
+                <button type="submit" class="btn btn-outline-primary">Create order</button>
+            </div>
+        </div>
+    </form>
